@@ -1,4 +1,4 @@
-from config import  api_url, my_headers
+from config import api_url, my_headers
 from pages.api_page import KinoApi
 import pytest
 import allure
@@ -21,6 +21,7 @@ def test_search_for_movie_by_name(film_title):
     with allure.step("Проверка статуса ответа"):
         assert resp.status_code == 200
 
+
 @allure.feature("Поиск")
 @allure.story("API")
 @allure.title("Поиск фильмов по id")
@@ -32,6 +33,7 @@ def test_search_for_movie_by_id(film_id):
         assert resp.json()["id"] == int(film_id)
     with allure.step("Проверка статуса ответа"):
         assert resp.status_code == 200
+
 
 @allure.feature("Поиск")
 @allure.story("API")
@@ -45,6 +47,7 @@ def test_search_for_actors_by_name(name_actors):
     with allure.step("Проверка статуса ответа"):
         assert resp.status_code == 200
 
+
 @allure.feature("Поиск")
 @allure.story("API")
 @allure.title("Поиск актеров по имени только цифрами")
@@ -53,6 +56,7 @@ def test_search_for_movie_by_name_negative(film_title):
     resp = kino_api.search_for_movie_name(film_title)
     with allure.step("Проверка статуса ответа"):
         assert resp.status_code == 200
+
 
 @allure.feature("Поиск")
 @allure.story("API")
@@ -63,4 +67,3 @@ def test_search_for_actors_by_name_negative(name_actors):
     resp = kino_api.search_for_actors_name(name_actors)
     with allure.step("Проверка статуса ответа"):
         assert resp.status_code == 200
-

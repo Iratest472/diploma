@@ -32,6 +32,7 @@ def test_check_main_page_title(main_page):
         assert main_page.check_page_title(
             "Кинопоиск. Онлайн кинотеатр. Фильмы сериалы мультфильмы и энциклопедия")
 
+
 @allure.feature("Поиск")
 @allure.story("UI")
 @allure.title("Поиск фильмов по названию")
@@ -45,6 +46,7 @@ def test_search_book_by_title(main_page, film_title):
         assert main_page.get_search_results_count() > 0
     with allure.step(f"Название фильма содержится в результатах"):
         assert film_title in main_page.find_book_titles()
+
 
 @allure.feature("Поиск")
 @allure.story("UI")
@@ -64,6 +66,7 @@ def test_search_person_by_name(main_page, person_name):
         results_list = main_page.find_person_names()
         assert any(name.lower() == person_name.lower() for name in results_list), \
                f"Имя '{person_name}' не обнаружено в результатах поиска."
+
 
 @allure.feature("Поиск")
 @allure.story("UI")
@@ -85,7 +88,7 @@ def test_search_book_by_title_negative(main_page, film_title):
 @allure.title("Поиск персонажей по имени только пробелами")
 @pytest.mark.parametrize("person_name",
                          ["       ", "       "])
-def test_search_person_by_name(main_page, person_name):
+def test_search_person_by_name_negative(main_page, person_name):
     """ Тестируем возможность поиска актеров, режиссеров и др. персонажи по имени. """
     with allure.step(f"Ищем персонаж по имени {person_name}"):
         main_page.search_items_by_phrase(person_name)

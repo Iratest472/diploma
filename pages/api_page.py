@@ -2,11 +2,11 @@ import requests
 import allure
 from selenium.webdriver.common.by import By
 
+
 class KinoApi:
     def __init__(self, api_url: str, my_headers) -> None:
         self.api_url = api_url
         self.my_headers = my_headers
-
 
     @allure.step("Получаем названия фильмов")
     def search_for_movie_name(self, movie_name: str):

@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class MainPage:
     def __init__(self, driver, url):
         self.driver = driver
@@ -35,7 +36,6 @@ class MainPage:
         return self._get_element_texts("[data-type='film']")
 
     @allure.step("Получаем количество результатов поиска")
-
     def get_search_results_count(self):
         results_text = self._wait_for_elements(By.CSS_SELECTOR, ".search_results_topText").text
 
